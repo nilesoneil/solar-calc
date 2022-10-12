@@ -1,7 +1,13 @@
 export class PersonAge {
   constructor (yourAge) {
+    const tempAge = parseInt(yourAge, 10);
+    if(isNaN(tempAge) || tempAge <0) {
+      throw new Error("age must be a positive number");
+    }
+    
     this.age = yourAge;
-    this.planet = {
+    this.currentPlanet = "earth";
+    this.planets = {
       mercury: 0.24,
       venus: .62,
       earth: 1,
@@ -10,15 +16,35 @@ export class PersonAge {
     };
   }
 
-convertAgeToPlanet(age, planet) {
-  this.age = age * this.planet[planet];
-  return this.age;
-}
+  toMercuryAge() {
+    this.convertToPlanetAge("mercury");
+  }
+  toVenusAge() {
+    this.convertToPlanetAge("venus");
+  }
+  toEarthAge() {
+    this.convertToPlanetAge("earth");
+  }
+  toMarsAge() {
+    this.convertToPlanetAge("mars");
+  }
+  toJupiterAge() {
+    this.convertToPlanetAge("jupiter");
+  }
 
-howLongYouGot(lifeExpectancy, planet) {
-  const tempAge = this.convertAgeToPlanet(this.age, planet) - this.convertAgeToPlanet(lifeExpectancy, planet);
-  return Math.abs(tempAge);
-}
+  convertToPlanetAge(planet) {
+    this.age = (this.age/this.planets[this.currentPlanet]) * this.planets[planet];
+    this.currentPlanet = planet;
+  }
+
+  convertAgeToPlanet(age, planet) {
+    return age * this.planets[planet];
+  }
+
+  howLongYouGot(lifeExpectancy, planet) {
+    const tempAge = this.convertAgeToPlanet(this.age, planet) - this.convertAgeToPlanet(lifeExpectancy, planet);
+    return Math.abs(tempAge);
+  }
 }
 
 

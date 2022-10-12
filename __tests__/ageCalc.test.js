@@ -21,11 +21,36 @@ describe('calcAge', () => {
     calc.toJupiterAge()
     expect(calc.age).toBeCloseTo(118.6);
   });
+  test("To Jupiter and Back Age", () => {
+    calc.toJupiterAge()
+    expect(calc.age).toBeCloseTo(118.6);
+    calc.toEarthAge();
+    expect(calc.age).toBeCloseTo(10);
+  });
+  test("Throws error if age is negative", () => {
+    try {
+      new PersonAge(-1);
+    } catch (e) {
+      expect(e.message).toBe("age must be a positive number");
+    }
+  });
+  test("Throws error if no age set", () => {
+    try {
+      new PersonAge();
+    } catch (e) {
+      expect(e.message).toBe("age must be a positive number");
+    }
+  });
+  test("Throws error if non parseable int", () => {
+    try {
+      new PersonAge("F01qques");
+    } catch (e) {
+      expect(e.message).toBe("age must be a positive number");
+    }
+  });
   test("It should take an age return life expectancy", () => {
-    const age = 10;
     const lifeExpectancy = 8;
     const planet = "jupiter";
-    const calc = new PersonAge(age);
     expect(calc.howLongYouGot(lifeExpectancy, planet)).toBeCloseTo(23.72);
   });
 });

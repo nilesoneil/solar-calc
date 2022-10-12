@@ -4,13 +4,15 @@ export class PersonAge {
     this.planet = {
       mercury: 0.24,
       venus: .62,
+      earth: 1,
       mars: 1.88,
       jupiter: 11.86
     };
   }
 
 convertAgeToPlanet(age, planet) {
-  return age * this.planet[planet];
+  this.age = age * this.planet[planet];
+  return this.age;
 }
 
 howLongYouGot(lifeExpectancy, planet) {

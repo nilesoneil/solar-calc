@@ -1,27 +1,25 @@
-import {PersonAge} from "../src/agecalculator";
+import { PersonAge } from "../src/agecalculator";
 
 describe('calcAge', () => {
-  test("It should take a user's age", () => {
-    //code
-    const personAge = new PersonAge(10);
-    //expect statements
-    expect(personAge.age).toEqual(10);
+  let calc;
+  beforeEach(() => {
+    calc = new PersonAge(10);
   });
-  test("It should take an age and convert to mercury age", () => {
-    const mercuryAge = new PersonAge(10);
-    expect(mercuryAge.convertAgeToPlanet(10, "mercury")).toEqual(2.4)
+  test("To Mercury Age", () => {
+    calc.toMercuryAge()
+    expect(calc.age).toEqual(2.4);
   });
-  test("It should take an age and convert to venus age", () => {
-    const venusAge = new PersonAge(10);
-    expect(venusAge.convertAgeToPlanet(10, "venus")).toEqual(6.2)
+  test("To Venus Age", () => {
+    calc.toVenusAge()
+    expect(calc.age).toEqual(6.2)
   });
-  test("It should take an age and convert to mars age", () => {
-    const marsAge = new PersonAge(10);
-    expect(marsAge.convertAgeToPlanet(10, "mars")).toBeCloseTo(18.8)
+  test("To Mars Age", () => {
+    calc.toMarsAge()
+    expect(calc.age).toBeCloseTo(18.8);
   });
-  test("It should take an age and convert to jupiter age", () => {
-    const jupiterAge = new PersonAge(10);
-    expect(jupiterAge.convertAgeToPlanet(10, "jupiter")).toBeCloseTo(118.6)
+  test("To Jupiter Age", () => {
+    calc.toJupiterAge()
+    expect(calc.age).toBeCloseTo(118.6);
   });
   test("It should take an age return life expectancy", () => {
     const age = 10;

@@ -17,7 +17,7 @@ module.exports = {
     new ESLintPlugin(),
     new CleanWebpackPlugin(),
     new HTMLWebpackPlugin({
-      title: "Dickbutt",
+      title: "Solar-calc",
       template: "./src/index.html",
       inject: "body"
     })
